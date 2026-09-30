@@ -1,1387 +1,514 @@
-[data-theme="dark"] {
-        --bg: #1a1a1e;
-        --card-bg: #2a2a30;
-        --text: #e8e8e8;
-        --text-light: #a0a0a0;
-        --primary: #5a8fa8;
-        --primary-dark: #7bb8d0;
-        --secondary: #8a6a7a;
-        --accent: #7a6a9a;
-        --mint: #3a5a50;
-        --peach: #5a4a3a;
-        --lavender: #4a3a5a;
-        --shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        --success: #4a7a6a;
-        --warning: #7a5a4a;
-    }
-
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    body {
-        font-family: var(--font);
-        background-color: var(--bg);
-        color: var(--text);
-        line-height: 1.5;
-        transition: background-color 0.3s, color 0.3s;
-        padding-bottom: calc(var(--nav-height) + 20px);
-        min-height: 100vh;
-    }
-
-    /* --- ОБЩИЕ КОМПОНЕНТЫ --- */
-    .app-container {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 16px;
-    }
-
-    h1, h2, h3 {
-        font-weight: 600;
-        color: var(--text);
-    }
-
-    h1 { font-size: 1.5rem; margin-bottom: 16px; }
-    h2 { font-size: 1.25rem; margin-bottom: 12px; }
-    h3 { font-size: 1.1rem; margin-bottom: 8px; }
-
-    .card {
-        background: var(--card-bg);
-        border-radius: var(--radius);
-        padding: 16px;
-        box-shadow: var(--shadow);
-        margin-bottom: 16px;
-        transition: background-color 0.3s, box-shadow 0.3s;
-    }
-
-    .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 8px;
-        padding: 12px 20px;
-        border-radius: var(--radius-sm);
-        border: none;
-        font-size: 1rem;
-        font-weight: 500;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        font-family: var(--font);
-        text-decoration: none;
-    }
-
-    .btn:active {
-        transform: scale(0.97);
-    }
-
-    .btn-primary {
-        background: var(--primary);
-        color: #fff;
-    }
-
-    .btn-primary:hover {
-        background: var(--primary-dark);
-    }
-
-    .btn-secondary {
-        background: var(--secondary);
-        color: var(--text);
-    }
-
-    .btn-outline {
-        background: transparent;
-        border: 2px solid var(--primary);
-        color: var(--primary-dark);
-    }
-
-    .btn-ghost {
-        background: transparent;
-        color: var(--text-light);
-        padding: 8px 12px;
-    }
-
-    .btn-small {
-        padding: 8px 14px;
-        font-size: 0.9rem;
-    }
-
-    .btn-block {
-        width: 100%;
-    }
-
-    .btn-danger {
-        background: #f0d0d0;
-        color: #8a5a5a;
-    }
-
-    [data-theme="dark"] .btn-danger {
-        background: #5a3a3a;
-        color: #d0a0a0;
-    }
-
-    .input-group {
-        margin-bottom: 12px;
-    }
-
-    .input-group label {
-        display: block;
-        font-size: 0.9rem;
-        color: var(--text-light);
-        margin-bottom: 4px;
-    }
-
-    .input-group input,
-    .input-group select,
-    .input-group textarea {
-        width: 100%;
-        padding: 12px 14px;
-        border-radius: var(--radius-sm);
-        border: 1px solid #e0e0e0;
-        background: var(--card-bg);
-        color: var(--text);
-        font-size: 1rem;
-        font-family: var(--font);
-        transition: border-color 0.2s;
-    }
-
-    [data-theme="dark"] .input-group input,
-    [data-theme="dark"] .input-group select,
-    [data-theme="dark"] .input-group textarea {
-        border-color: #444;
-    }
-
-    .input-group input:focus,
-    .input-group select:focus,
-    .input-group textarea:focus {
-        outline: none;
-        border-color: var(--primary);
-    }
-
-    .row {
-        display: flex;
-        gap: 12px;
-    }
-
-    .row > * {
-        flex: 1;
-    }
-
-    /* --- НАВИГАЦИЯ --- */
-    .bottom-nav {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: var(--nav-height);
-        background: var(--card-bg);
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.05);
-        z-index: 100;
-border-top: 1px solid rgba(0, 0, 0, 0.03);
-        transition: background-color 0.3s;
-    }
-
-    [data-theme="dark"] .bottom-nav {
-        border-top: 1px solid #333;
-    }
-
-    .nav-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 2px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 0.7rem;
-        color: var(--text-light);
-        padding: 8px 12px;
-        border-radius: var(--radius-sm);
-        transition: all 0.2s;
-        font-family: var(--font);
-        flex: 1;
-        max-width: 100px;
-    }
-
-    .nav-item.active {
-        color: var(--primary-dark);
-        background: var(--lavender);
-    }
-
-    [data-theme="dark"] .nav-item.active {
-        background: var(--accent);
-    }
-
-    .nav-item .nav-icon {
-        font-size: 1.4rem;
-    }
-
-    /* --- ЭКРАНЫ --- */
-    .screen {
-        display: none;
-        animation: fadeIn 0.3s ease;
-    }
-
-    .screen.active {
-        display: block;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(8px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* --- ОНБОРДИНГ --- */
-    .onboarding {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        min-height: 100vh;
-        padding: 24px;
-        max-width: 500px;
-        margin: 0 auto;
-    }
-
-    .onboarding .logo {
-        font-size: 3rem;
-        text-align: center;
-        margin-bottom: 8px;
-    }
-
-    .onboarding h1 {
-        text-align: center;
-        margin-bottom: 4px;
-    }
-
-    .onboarding .subtitle {
-        text-align: center;
-        color: var(--text-light);
-        margin-bottom: 24px;
-    }
-
-    .onboarding .step {
-        display: none;
-    }
-
-    .onboarding .step.active {
-        display: block;
-    }
-
-    .onboarding .step-indicator {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin-bottom: 24px;
-    }
-
-    .onboarding .dot {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: #e0e0e0;
-        transition: background 0.3s;
-    }
-
-    .onboarding .dot.active {
-        background: var(--primary);
-    }
-
-    /* --- ДНЕВНИК --- */
-    .meal-card {
-        margin-bottom: 12px;
-    }
-
-    .meal-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 8px;
-    }
-
-    .meal-header .meal-name {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        font-weight: 600;
-        font-size: 1.1rem;
-    }
-
-    .meal-header .meal-cal {
-        color: var(--text-light);
-        font-size: 0.9rem;
-    }
-
-    .meal-items {
-        display: flex;
-        flex-direction: column;
-        gap: 6px;
-    }
-
-    .meal-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 8px 12px;
-        background: var(--bg);
-        border-radius: var(--radius-sm);
-        font-size: 0.9rem;
-        animation: slideIn 0.2s ease;
-    }
-
-    @keyframes slideIn {
-        from { opacity: 0; transform: translateX(-8px); }
-        to { opacity: 1; transform: translateX(0); }
-    }
-
-    .meal-item .item-info {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        min-width: 0;
-    }
-
-    .meal-item .item-name {
-        font-weight: 500;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    .meal-item .item-details {
-        font-size: 0.75rem;
-        color: var(--text-light);
-    }
-
-    .meal-item .item-actions {
-        display: flex;
-        gap: 4px;
-    }
-
-    .meal-item .item-actions button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 1rem;
-        padding: 4px;
-        border-radius: 6px;
-        transition: background 0.2s;
-    }
-
-    .meal-item .item-actions button:hover {
-        background: rgba(0,0,0,0.05);
-    }
-
-    /* --- КОЛЬЦЕВОЙ ПРОГРЕСС --- */
-    .ring-progress {
-align-items: center;
-        gap: 4px;
-        min-width: 28px;
-        flex: 1;
-    }
-
-    .bar-chart .bar {
-        width: 100%;
-        max-width: 32px;
-        background: var(--primary);
-        border-radius: 4px 4px 0 0;
-        min-height: 4px;
-        transition: height 0.5s ease;
-        position: relative;
-    }
-
-    .bar-chart .bar-label {
-        font-size: 0.65rem;
-        color: var(--text-light);
-        white-space: nowrap;
-    }
-
-    .bar-chart .bar-value {
-        font-size: 0.65rem;
-        color: var(--text-light);
-        font-weight: 500;
-    }
-
-    /* --- СООБЩЕНИЯ --- */
-    .message-box {
-        padding: 14px 16px;
-        border-radius: var(--radius-sm);
-        margin-bottom: 12px;
-        font-size: 0.9rem;
-        line-height: 1.5;
-    }
-
-    .message-box.info {
-        background: var(--mint);
-        color: var(--text);
-    }
-
-    .message-box.warning {
-        background: var(--peach);
-        color: var(--text);
-    }
-
-    .message-box.success {
-        background: var(--success);
-        color: var(--text);
-    }
-
-    [data-theme="dark"] .message-box.info {
-        background: var(--mint);
-        color: var(--text);
-    }
-
-    /* --- ПРОЧЕЕ --- */
-    .empty-state {
-        text-align: center;
-        padding: 32px 16px;
-        color: var(--text-light);
-    }
-
-    .empty-state .emoji {
-        font-size: 3rem;
-        margin-bottom: 8px;
-    }
-
-    .footer-note {
-        text-align: center;
-        font-size: 0.75rem;
-        color: var(--text-light);
-        padding: 16px;
-        line-height: 1.6;
-    }
-
-    .theme-toggle {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px 0;
-    }
-
-    .theme-toggle .toggle-switch {
-        position: relative;
-        width: 52px;
-        height: 28px;
-        background: #e0e0e0;
-        border-radius: 14px;
-        cursor: pointer;
-        transition: background 0.3s;
-    }
-
-    [data-theme="dark"] .theme-toggle .toggle-switch {
-        background: #555;
-    }
-
-    .theme-toggle .toggle-switch::after {
-        content: '';
-        position: absolute;
-        top: 3px;
-        left: 3px;
-        width: 22px;
-        height: 22px;
-        background: #fff;
-        border-radius: 50%;
-        transition: transform 0.3s;
-    }
-
-    [data-theme="dark"] .theme-toggle .toggle-switch::after {
-        transform: translateX(24px);
-    }
-
-    .hidden {
-        display: none !important;
-    }
-
-    /* --- АДАПТИВ --- */
-    @media (max-width: 380px) {
-        .app-container {
-            padding: 10px;
-        }
-        .card {
-            padding: 12px;
-        }
-        .nav-item {
-            font-size: 0.6rem;
-            padding: 6px 6px;
-        }
-        .nav-item .nav-icon {
-            font-size: 1.2rem;
-        }
-    }
-
-    @media (min-width: 601px) {
-        .app-container {
-            padding: 24px;
-        }
-        body {
-            padding-bottom: 100px;
-        }
-    }
-
-    /* Скроллбар */
-    ::-webkit-scrollbar {
-        width: 4px;
-    }
-    ::-webkit-scrollbar-track {
-        background: transparent;
-    }
-    ::-webkit-scrollbar-thumb {
-        background: var(--text-light);
-        border-radius: 2px;
-    }
-
-    /* Анимация появления */
-    .fade-in {
-        animation: fadeIn 0.3s ease;
-    }
-
-    /* Стили для чекбоксов */
-    .checkbox-label {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        cursor: pointer;
-        font-size: 0.9rem;
-        color: var(--text-light);
-    }
-
-    .checkbox-label input[type="checkbox"] {
-        width: 18px;
-        height: 18px;
-        accent-color: var(--primary);
-        cursor: pointer;
-    }
-
-    /* Умный ввод */
-    .smart-input-results {
-        margin-top: 12px;
-    }
-
-    .smart-result-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 12px;
-        background: var(--bg);
-        border-radius: var(--radius-sm);
-        margin-bottom: 6px;
-        animation: slideIn 0.2s ease;
-    }
-
-    .smart-result-item .info {
-display: flex;
-        justify-content: center;
-        align-items: center;
-        position: relative;
-        margin: 16px 0;
-    }
-
-    .ring-progress svg {
-        transform: rotate(-90deg);
-    }
-
-    .ring-progress .ring-bg {
-        fill: none;
-        stroke: #e8e8e8;
-        stroke-width: 10;
-    }
-
-    [data-theme="dark"] .ring-progress .ring-bg {
-        stroke: #3a3a3a;
-    }
-
-    .ring-progress .ring-fill {
-        fill: none;
-        stroke: var(--primary);
-        stroke-width: 10;
-        stroke-linecap: round;
-        transition: stroke-dashoffset 0.8s ease;
-    }
-
-    .ring-progress .ring-text {
-        position: absolute;
-        text-align: center;
-    }
-
-    .ring-progress .ring-text .cal-num {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--text);
-    }
-
-    .ring-progress .ring-text .cal-label {
-        font-size: 0.75rem;
-        color: var(--text-light);
-    }
-
-    .macro-bars {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 12px;
-    }
-
-    .macro-bar {
-        text-align: center;
-        flex: 1;
-    }
-
-    .macro-bar .macro-label {
-        font-size: 0.8rem;
-        color: var(--text-light);
-    }
-
-    .macro-bar .macro-value {
-        font-weight: 600;
-        font-size: 1rem;
-    }
-
-    .macro-bar .macro-bar-bg {
-        height: 6px;
-        background: #e8e8e8;
-        border-radius: 3px;
-        margin-top: 4px;
-        overflow: hidden;
-    }
-
-    [data-theme="dark"] .macro-bar .macro-bar-bg {
-        background: #3a3a3a;
-    }
-
-    .macro-bar .macro-bar-fill {
-        height: 100%;
-        border-radius: 3px;
-        transition: width 0.8s ease;
-    }
-
-    .macro-bar .macro-bar-fill.protein { background: var(--primary); }
-    .macro-bar .macro-bar-fill.fat { background: var(--secondary); }
-    .macro-bar .macro-bar-fill.carbs { background: var(--accent); }
-
-    /* --- ВОДА --- */
-    .water-tracker {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        margin-top: 8px;
-    }
-
-    .water-tracker .water-count {
-        font-size: 1.5rem;
-        font-weight: 700;
-        min-width: 60px;
-        text-align: center;
-    }
-
-    .water-tracker button {
-        width: 48px;
-        height: 48px;
-        border-radius: 50%;
-        border: none;
-        background: var(--mint);
-        font-size: 1.5rem;
-        cursor: pointer;
-        transition: transform 0.2s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--text);
-    }
-
-    .water-tracker button:active {
-        transform: scale(0.9);
-    }
-
-    .water-tracker button:disabled {
-        opacity: 0.4;
-        cursor: not-allowed;
-    }
-
-    .water-glasses {
-        display: flex;
-        gap: 4px;
-        font-size: 1.2rem;
-        flex-wrap: wrap;
-        justify-content: center;
-        margin-top: 8px;
-    }
-
-    .water-glasses span {
-        transition: opacity 0.3s;
-    }
-
-    .water-glasses span.empty {
-        opacity: 0.2;
-    }
-
-    /* --- ПОИСК ПРОДУКТОВ --- */
-    .search-container {
-        position: relative;
-    }
-
-    .search-results {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: var(--card-bg);
-        border-radius: var(--radius-sm);
-        box-shadow: var(--shadow);
-        max-height: 250px;
-        overflow-y: auto;
-        z-index: 50;
-        display: none;
-    }
-
-    .search-results.active {
-        display: block;
-    }
-
-    .search-results .search-item {
-        padding: 12px 16px;
-        cursor: pointer;
-        border-bottom: 1px solid rgba(0,0,0,0.03);
-        transition: background 0.2s;
-    }
-
-    .search-results .search-item:hover {
-        background: var(--lavender);
-    }
-
-    .search-results .search-item:last-child {
-        border-bottom: none;
-    }
-
-    .search-results .search-item .name {
-        font-weight: 500;
-    }
-
-    .search-results .search-item .cal {
-        font-size: 0.8rem;
-        color: var(--text-light);
-    }
-
-    /* --- МОДАЛЬНЫЕ ОКНА --- */
-flex: 1;
-    }
-
-    .smart-result-item .name {
-        font-weight: 500;
-    }
-
-    .smart-result-item .details {
-        font-size: 0.8rem;
-        color: var(--text-light);
-    }
-
-    .smart-result-item .actions {
-        display: flex;
-        gap: 6px;
-    }
-
-    .smart-result-item .actions button {
-        padding: 4px 10px;
-        border-radius: 8px;
-        border: none;
-        font-size: 0.8rem;
-        cursor: pointer;
-        font-family: var(--font);
-        transition: all 0.2s;
-    }
-
-    .smart-result-item .actions .confirm-btn {
-        background: var(--primary);
-        color: #fff;
-    }
-
-    .smart-result-item .actions .reject-btn {
-        background: var(--bg);
-        color: var(--text-light);
-        border: 1px solid #ddd;
-    }
+[30.09.2026 16:35] Togrul 🥷🏻: <!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Дневник питания и роста</title>
+<style>
+:root{--bg:#fdf8f5;--card:#fff;--text:#4a4a4a;--light:#8a8a8a;--primary:#a8d8ea;--primary-dark:#7bb8d0;--secondary:#f7d6e0;--accent:#e2d1f9;--mint:#d4f0e8;--peach:#ffe8d6;--lavender:#e8e0f5;--shadow:0 4px 12px rgba(0,0,0,.05);--radius:20px;--radius-sm:12px;--nav-h:70px}
+[data-theme="dark"]{--bg:#1a1a1e;--card:#2a2a30;--text:#e8e8e8;--light:#a0a0a0;--primary:#5a8fa8;--primary-dark:#7bb8d0;--secondary:#8a6a7a;--accent:#7a6a9a;--mint:#3a5a50;--peach:#5a4a3a;--lavender:#4a3a5a;--shadow:0 4px 12px rgba(0,0,0,.2)}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.5;padding-bottom:calc(var(--nav-h) + 20px);min-height:100vh;transition:background .3s,color .3s}
+.app{max-width:600px;margin:0 auto;padding:16px}
+h1,h2,h3{font-weight:600;margin-bottom:12px}h1{font-size:1.5rem}h2{font-size:1.25rem}h3{font-size:1.1rem}
+.card{background:var(--card);border-radius:var(--radius);padding:16px;box-shadow:var(--shadow);margin-bottom:16px;transition:background .3s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:var(--radius-sm);border:none;font-size:1rem;font-weight:500;cursor:pointer;transition:all .2s;font-family:inherit}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--primary);color:#fff}.btn-primary:hover{background:var(--primary-dark)}
+.btn-outline{background:transparent;border:2px solid var(--primary);color:var(--primary-dark)}
+.btn-secondary{background:var(--secondary);color:var(--text)}
+.btn-block{width:100%}.btn-small{padding:8px 14px;font-size:.9rem}
+.btn-danger{background:#f0d0d0;color:#8a5a5a}
+.input-group{margin-bottom:12px}
+.input-group label{display:block;font-size:.9rem;color:var(--light);margin-bottom:4px}
+.input-group input,.input-group select,.input-group textarea{width:100%;padding:12px 14px;border-radius:var(--radius-sm);border:1px solid #e0e0e0;background:var(--card);color:var(--text);font-size:1rem;font-family:inherit}
+[data-theme="dark"] .input-group input,[data-theme="dark"] .input-group select,[data-theme="dark"] .input-group textarea{border-color:#444}
+.input-group input:focus,.input-group select:focus,.input-group textarea:focus{outline:none;border-color:var(--primary)}
+.row{display:flex;gap:12px}.row>*{flex:1}
+.nav{position:fixed;bottom:0;left:0;right:0;height:var(--nav-h);background:var(--card);display:flex;justify-content:space-around;align-items:center;box-shadow:0 -2px 12px rgba(0,0,0,.05);z-index:100;border-top:1px solid rgba(0,0,0,.03)}
+[data-theme="dark"] .nav{border-top:1px solid #333}
+.nav-item{display:flex;flex-direction:column;align-items:center;gap:2px;background:none;border:none;cursor:pointer;font-size:.7rem;color:var(--light);padding:8px 12px;border-radius:var(--radius-sm);flex:1;max-width:100px;font-family:inherit;transition:all .2s}
+.nav-item.active{color:var(--primary-dark);background:var(--lavender)}
+.nav-item .icon{font-size:1.4rem}
+.screen{display:none;animation:fade .3s ease}.screen.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.onboarding{display:flex;flex-direction:column;justify-content:center;min-height:100vh;padding:24px;max-width:500px;margin:0 auto}
+.onboarding .logo{font-size:3rem;text-align:center;margin-bottom:8px}
+.onboarding h1{text-align:center;margin-bottom:4px}
+.onboarding .sub{text-align:center;color:var(--light);margin-bottom:24px}
+.step{display:none}.step.active{display:block}
+.dots{display:flex;justify-content:center;gap:8px;margin-bottom:24px}
+.dot{width:10px;height:10px;border-radius:50%;background:#e0e0e0;transition:background .3s}
+.dot.active{background:var(--primary)}
+.meal-card{margin-bottom:12px}
+.
+[30.09.2026 16:35] Togrul 🥷🏻: meal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.meal-name{font-weight:600;font-size:1.1rem;display:flex;gap:8px;align-items:center}
+.meal-cal{color:var(--light);font-size:.9rem}
+.meal-items{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.meal-item{display:flex;justify-content:space-between;align-items:center;padding:8px 12px;background:var(--bg);border-radius:var(--radius-sm);font-size:.9rem;animation:slide .2s ease}
+@keyframes slide{from{opacity:0;transform:translateX(-8px)}to{opacity:1;transform:translateX(0)}}
+.item-info{flex:1;min-width:0}
+.item-name{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.item-det{font-size:.75rem;color:var(--light)}
+.item-act{display:flex;gap:4px}
+.item-act button{background:none;border:none;cursor:pointer;font-size:1rem;padding:4px;border-radius:6px}
+.item-act button:hover{background:rgba(0,0,0,.05)}
+.ring-wrap{position:relative;display:flex;justify-content:center;margin:16px 0}
+.ring-bg{fill:none;stroke:#e8e8e8;stroke-width:10}
+[data-theme="dark"] .ring-bg{stroke:#3a3a3a}
+.ring-fill{fill:none;stroke:var(--primary);stroke-width:10;stroke-linecap:round;transition:stroke-dashoffset .8s ease}
+.ring-text{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+.ring-text .num{font-size:1.5rem;font-weight:700}
+.ring-text .lbl{font-size:.75rem;color:var(--light)}
+.macros{display:flex;justify-content:space-around;margin-top:12px}
+.macro{text-align:center;flex:1}
+.macro .lbl{font-size:.8rem;color:var(--light)}
+.macro .val{font-weight:600}
+.macro .bar{height:6px;background:#e8e8e8;border-radius:3px;margin-top:4px;overflow:hidden}
+[data-theme="dark"] .macro .bar{background:#3a3a3a}
+.macro .fill{height:100%;border-radius:3px;transition:width .8s ease}
+.fill.p{background:var(--primary)}.fill.f{background:var(--secondary)}.fill.c{background:var(--accent)}
+.water{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:8px}
+.water .cnt{font-size:1.5rem;font-weight:700;min-width:60px;text-align:center}
+.water button{width:48px;height:48px;border-radius:50%;border:none;background:var(--mint);font-size:1.5rem;cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--text)}
+.water button:active{transform:scale(.9)}
+.water button:disabled{opacity:.4}
+.glasses{display:flex;gap:4px;font-size:1.2rem;flex-wrap:wrap;justify-content:center;margin-top:8px}
+.glasses .empty{opacity:.2}
+.search-wrap{position:relative}
+.search-res{position:absolute;top:100%;left:0;right:0;background:var(--card);border-radius:var(--radius-sm);box-shadow:var(--shadow);max-height:250px;overflow-y:auto;z-index:50;display:none}
+.search-res.active{display:block}
+.search-item{padding:12px 16px;cursor:pointer;border-bottom:1px solid rgba(0,0,0,.03)}
+.search-item:hover{background:var(--lavender)}
+.search-item .n{font-weight:500}
+.search-item .c{font-size:.8rem;color:var(--light)}
+.overlay{position:fixed;inset:0;background:rgba(0,0,0,.4);display:none;justify-content:center;align-items:flex-end;z-index:200;animation:fade .2s ease}
+.overlay.active{display:flex}
+.modal{background:var(--card);border-radius:var(--radius) var(--radius) 0 0;width:100%;max-width:600px;max-height:85vh;overflow-y:auto;padding:20px;animation:up .3s ease}
+@keyframes up{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.modal-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
+.modal-head h2{margin-bottom:0}
+.close{background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--light);padding:4px 8px;border-radius:8px}
+.close:hover{background:rgba(0,0,0,.05)}
+.chart{position:relative;width:100%;height:200px;margin:12px 0}
+.chart canvas{width:100%!important;height:100%!important}
+.periods{display:flex;gap:6px;margin-bottom:12px;flex-wrap:wrap}
+.periods button{padding:6px 14px;border-radius:20px;border:1px solid #e0e0e0;background:var(--card);color:var(--light);font-size:.85rem;cursor:pointer;font-family:inherit}
+.periods button.
+[30.09.2026 16:35] Togrul 🥷🏻: active{background:var(--primary);color:#fff;border-color:var(--primary)}
+[data-theme="dark"] .periods button{border-color:#444}
+.meas-list{display:flex;flex-direction:column;gap:8px}
+.meas{display:flex;justify-content:space-between;align-items:center;padding:12px;background:var(--bg);border-radius:var(--radius-sm);font-size:.9rem}
+.meas .info{flex:1;min-width:0}
+.meas .date{font-size:.8rem;color:var(--light)}
+.meas .vals{display:flex;gap:12px;flex-wrap:wrap;margin-top:2px}
+.meas .val{font-weight:500}
+.meas .act{display:flex;gap:4px}
+.meas .act button{background:none;border:none;cursor:pointer;font-size:.9rem;padding:4px 6px;border-radius:6px}
+.meas .act button:hover{background:rgba(0,0,0,.05)}
+.stat-card{text-align:center;padding:16px}
+.stat-val{font-size:2rem;font-weight:700;color:var(--primary-dark)}
+.stat-lbl{font-size:.85rem;color:var(--light)}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.bars{display:flex;align-items:flex-end;gap:4px;height:120px;padding:8px 0;overflow-x:auto}
+.bar-w{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:28px;flex:1}
+.bar{width:100%;max-width:32px;background:var(--primary);border-radius:4px 4px 0 0;min-height:4px;transition:height .5s ease}
+.bar-lbl{font-size:.65rem;color:var(--light);white-space:nowrap}
+.bar-val{font-size:.65rem;color:var(--light);font-weight:500}
+.msg{padding:14px 16px;border-radius:var(--radius-sm);margin-bottom:12px;font-size:.9rem;line-height:1.5}
+.msg.info{background:var(--mint)}.msg.warn{background:var(--peach)}.msg.ok{background:var(--success,#b8e0d2)}
+.empty{text-align:center;padding:32px 16px;color:var(--light)}
+.empty .em{font-size:3rem;margin-bottom:8px}
+.footer{text-align:center;font-size:.75rem;color:var(--light);padding:16px;line-height:1.6}
+.toggle-row{display:flex;justify-content:space-between;align-items:center;padding:12px 0}
+.switch{position:relative;width:52px;height:28px;background:#e0e0e0;border-radius:14px;cursor:pointer;transition:background .3s}
+[data-theme="dark"] .switch{background:#555}
+.switch::after{content:'';position:absolute;top:3px;left:3px;width:22px;height:22px;background:#fff;border-radius:50%;transition:transform .3s}
+[data-theme="dark"] .switch::after{transform:translateX(24px)}
+.hidden{display:none!important}
+.smart-res{margin-top:12px}
+.smart-item{display:flex;justify-content:space-between;align-items:center;padding:10px 12px;background:var(--bg);border-radius:var(--radius-sm);margin-bottom:6px;animation:slide .2s}
+.smart-item .n{font-weight:500}.smart-item .d{font-size:.8rem;color:var(--light)}
+.smart-item button{padding:4px 10px;border-radius:8px;border:none;font-size:.8rem;cursor:pointer;font-family:inherit;background:var(--primary);color:#fff}
+.chk{display:flex;align-items:center;gap:8px;cursor:pointer;font-size:.9rem;color:var(--light);margin-bottom:12px}
+.chk input{width:18px;height:18px;accent-color:var(--primary)}
+@media(max-width:380px){.app{padding:10px}.card{padding:12px}}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--light);border-radius:2px}
 </style>
-<div class="step-indicator">
-    <div class="dot active" data-step="1"></div>
-    <div class="dot" data-step="2"></div>
-    <div class="dot" data-step="3"></div>
+</head>
+<body>
+
+<!-- ОНБОРДИНГ -->
+<div id="onb" class="onboarding">
+<div class="logo">🌸</div>
+<h1>Дневник питания и роста</h1>
+<p class="sub">Давай познакомимся!</p>
+<div class="dots"><div class="dot active" data-s="1"></div><div class="dot" data-s="2"></div><div class="dot" data-s="3"></div></div>
+
+<div class="step active" data-s="1">
+<div class="input-group"><label>Как тебя зовут?</label><input id="oName" placeholder="Например, Аня"></div>
+<div class="input-group"><label>Дата рождения</label><input type="date" id="oBirth"></div>
+<div class="input-group"><label>Пол</label><select id="oGender"><option value="female">Девочка</option><option value="male">Мальчик</option></select></div>
+<button class="btn btn-primary btn-block" id="s1Next">Далее →</button>
 </div>
 
-<!-- Шаг 1: Имя и дата рождения -->
-<div class="step active" data-step="1">
-    <div class="input-group">
-        <label>Как тебя зовут?</label>
-        <input type="text" id="onboardName" placeholder="Например, Аня" autocomplete="off">
-    </div>
-    <div class="input-group">
-        <label>Дата рождения</label>
-        <input type="date" id="onboardBirthdate">
-    </div>
-    <div class="input-group">
-        <label>Пол</label>
-        <select id="onboardGender">
-            <option value="female">Девочка</option>
-            <option value="male">Мальчик</option>
-        </select>
-    </div>
-    <button class="btn btn-primary btn-block" id="step1Next">Далее →</button>
+<div class="step" data-s="2">
+<div class="row">
+<div class="input-group"><label>Рост (см)</label><input type="number" id="oHeight" placeholder="150"></div>
+[30.09.2026 16:35] Togrul 🥷🏻: <div class="input-group"><label>Вес (кг)</label><input type="number" id="oWeight" placeholder="40" step="0.1"></div>
+</div>
+<div class="input-group"><label>Уровень активности</label>
+<select id="oActivity"><option value="low">Низкий</option><option value="medium" selected>Средний</option><option value="high">Высокий</option></select>
+</div>
+<div class="row"><button class="btn btn-outline" id="s2Back">← Назад</button><button class="btn btn-primary" id="s2Next">Далее →</button></div>
 </div>
 
-<!-- Шаг 2: Рост, вес, активность -->
-<div class="step" data-step="2">
-    <div class="row">
-        <div class="input-group">
-            <label>Рост (см)</label>
-            <input type="number" id="onboardHeight" placeholder="150" min="50" max="250">
-        </div>
-        <div class="input-group">
-            <label>Вес (кг)</label>
-            <input type="number" id="onboardWeight" placeholder="40" min="10" max="300" step="0.1">
-        </div>
-    </div>
-    <div class="input-group">
-        <label>Уровень активности</label>
-        <select id="onboardActivity">
-            <option value="low">Низкий (мало движения)</option>
-            <option value="medium" selected>Средний (умеренная активность)</option>
-            <option value="high">Высокий (спорт, активный образ жизни)</option>
-        </select>
-    </div>
-    <div class="row">
-        <button class="btn btn-outline" id="step2Back">← Назад</button>
-        <button class="btn btn-primary" id="step2Next">Далее →</button>
-    </div>
+<div class="step" data-s="3">
+<div id="calRec"></div>
+<div class="input-group"><label>Ориентир по калориям (можно изменить)</label><input type="number" id="oCal" step="10"></div>
+<div id="teenWarn"></div>
+<button class="btn btn-primary btn-block" id="finish">Начать! 🌟</button>
+</div>
 </div>
 
-<!-- Шаг 3: Норма калорий -->
-<div class="step" data-step="3">
-    <div id="calorieRecommendation"></div>
-    <div class="input-group">
-        <label>Твой ориентир по калориям (можно изменить)</label>
-        <input type="number" id="onboardCalories" placeholder="1800" min="1000" max="5000" step="10">
-    </div>
-    <div id="teenWarning" class="hidden"></div>
-    <button class="btn btn-primary btn-block" id="finishOnboarding">Начать! 🌟</button>
+<!-- ПРИЛОЖЕНИЕ -->
+<div id="app" class="hidden">
+<div class="app">
+
+<!-- ДНЕВНИК -->
+<div id="scrDiary" class="screen active">
+<h1>🍽️ Дневник питания</h1>
+<p id="greet" style="color:var(--light);margin-bottom:16px;font-size:.9rem"></p>
+<div class="card">
+<div class="ring-wrap">
+<svg width="160" height="160" viewBox="0 0 160 160"><circle class="ring-bg" cx="80" cy="80" r="65"></circle><circle class="ring-fill" id="ring" cx="80" cy="80" r="65" stroke-dasharray="408.4" stroke-dashoffset="408.4"></circle></svg>
+<div class="ring-text"><div class="num" id="tCal">0</div><div class="lbl" id="calGoalLbl">из 1800 ккал</div></div>
 </div>
-    <!-- ===== ЭКРАН: ДНЕВНИК ===== -->
-    <div id="screenDiary" class="screen active">
-        <h1>🍽️ Дневник питания</h1>
-        <p id="greeting" style="color: var(--text-light); margin-bottom: 16px; font-size: 0.9rem;"></p>
+<div class="macros">
+<div class="macro"><div class="lbl">🥩 Белки</div><div class="val" id="tProt">0 г</div><div class="bar"><div class="fill p" id="pBar" style="width:0"></div></div></div>
+<div class="macro"><div class="lbl">🧈 Жиры</div><div class="val" id="tFat">0 г</div><div class="bar"><div class="fill f" id="fBar" style="width:0"></div></div></div>
+<div class="macro"><div class="lbl">🍞 Углеводы</div><div class="val" id="tCarb">0 г</div><div class="bar"><div class="fill c" id="cBar" style="width:0"></div></div></div>
+</div>
+</div>
+<div class="card">
+<div class="meal-head"><div class="meal-name">💧 Вода</div><div class="meal-cal" id="wLbl">0 стаканов</div></div>
+<div class="water"><button id="wMinus">−</button><div class="cnt" id="wCnt">0</div><button id="wPlus">+</button></div>
+<div class="glasses" id="wGlasses"></div>
+</div>
+<div id="meals"></div>
+<div class="card">
+<h3>✨ Умный ввод</h3>
+<p style="font-size:.85rem;color:var(--light);margin-bottom:8px">Напиши: «2 яйца и тост с маслом»</p>
+<div class="row"><input type="text" id="smartIn" placeholder="Опиши приём пищи..." style="flex:3"><button class="btn btn-primary btn-small" id="smartBtn" style="flex:1">Разобрать</button></div>
+<div id="smartRes" class="smart-res"></div>
+</div>
+<div id="recentCard" class="card hidden"><h3>🔄 Недавние</h3><div id="recent"></div></div>
+</div>
 
-        <!-- Кольцевой прогресс -->
-        <div class="card">
-            <div class="ring-progress">
-                <svg width="160" height="160" viewBox="0 0 160 160">
-                    <circle class="ring-bg" cx="80" cy="80" r="65"></circle>
-                    <circle class="ring-fill" id="calorieRing" cx="80" cy="80" r="65"
-                            stroke-dasharray="408.4" stroke-dashoffset="408.4"></circle>
-                </svg>
-                <div class="ring-text">
-                    <div class="cal-num" id="totalCalories">0</div>
-                    <div class="cal-label" id="calorieGoalLabel">из 1800 ккал</div>
-                </div>
-            </div>
-            <div class="macro-bars">
-<div style="font-size: 2rem; font-weight: 700; color: var(--primary-dark);" id="bmiValue">—</div>
-                <div style="font-size: 0.85rem; color: var(--text-light);" id="bmiCategory">—</div>
-            </div>
-        </div>
+<!-- ВЕС И РОСТ -->
+<div id="scrMeas" class="screen">
+<h1>📏 Вес и рост</h1>
+<button class="btn btn-primary btn-block" id="addMeas" style="margin-bottom:16px">+ Добавить замер</button>
+<div class="card"><h3>Динамика веса</h3>
+<div class="periods" id="wPeriods"><button data-p="week" class="active">Неделя</button><button data-p="month">Месяц</button><button data-p="3months">3 месяца</button><button data-p="all">Всё время</button></div>
+<div class="chart"><canvas id="wChart"></canvas></div></div>
+<div class="card"><h3>Динамика роста</h3>
+<div class="periods" id="hPeriods"><button data-p="week" class="active">Неделя</button><button data-p="month">Месяц</button><button data-p="3months">3 месяца</button><button data-p="all">Всё время</button></div>
+<div class="chart"><canvas id="hChart"></canvas></div></div>
+<div id="bmiCard" class="card hidden"><h3>ИМТ</h3><div style="text-align:center;padding:12px"><div style="font-size:2rem;font-weight:700;color:var(--primary-dark)" id="bmiVal">—</div><div style="font-size:.85rem;color:var(--light)" id="bmiCat">—</div></div></div>
+<div class="card"><h3>Все замеры</h3><div id="measList" class="meas-list"></div></div>
+</div>
 
-        <!-- Список замеров -->
-        <div class="card">
-            <h3>Все замеры</h3>
-            <div id="measurementList" class="measurement-list"></div>
-        </div>
-    </div>
+<!-- СТАТИСТИКА -->
+<div id="scrStats" class="screen">
+<h1>📊 Статистика</h1>
+<div class="card stat-card"><div style="font-size:2.
+[30.09.2026 16:35] Togrul 🥷🏻: 5rem">🔥</div><div class="stat-val" id="streak">0</div><div class="stat-lbl">дней подряд ведётся дневник</div></div>
+<div class="card"><h3>Средние за неделю</h3>
+<div class="grid2">
+<div class="stat-card"><div class="stat-val" id="wCal">0</div><div class="stat-lbl">ккал</div></div>
+<div class="stat-card"><div class="stat-val" id="wProt">0</div><div class="stat-lbl">белки, г</div></div>
+<div class="stat-card"><div class="stat-val" id="wFat">0</div><div class="stat-lbl">жиры, г</div></div>
+<div class="stat-card"><div class="stat-val" id="wCarb">0</div><div class="stat-lbl">углеводы, г</div></div>
+</div></div>
+<div class="card"><h3>Калории по дням (неделя)</h3><div class="bars" id="barsChart"></div></div>
+<div class="card"><h3>Средние за месяц</h3>
+<div class="grid2">
+<div class="stat-card"><div class="stat-val" id="mCal">0</div><div class="stat-lbl">ккал</div></div>
+<div class="stat-card"><div class="stat-val" id="mProt">0</div><div class="stat-lbl">белки, г</div></div>
+<div class="stat-card"><div class="stat-val" id="mFat">0</div><div class="stat-lbl">жиры, г</div></div>
+<div class="stat-card"><div class="stat-val" id="mCarb">0</div><div class="stat-lbl">углеводы, г</div></div>
+</div></div>
+<div id="weeklyMsg" class="msg info"></div>
+</div>
 
-    <!-- ===== ЭКРАН: СТАТИСТИКА ===== -->
-    <div id="screenStats" class="screen">
-        <h1>📊 Статистика</h1>
-
-        <!-- Серия дней -->
-        <div class="card stat-card">
-            <div style="font-size: 2.5rem;">🔥</div>
-            <div class="stat-value" id="streakDays">0</div>
-            <div class="stat-label">дней подряд ведётся дневник</div>
-        </div>
-
-        <!-- Средние за неделю -->
-        <div class="card">
-            <h3>Средние за неделю</h3>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value" id="weekAvgCal">0</div>
-                    <div class="stat-label">ккал</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="weekAvgProtein">0</div>
-                    <div class="stat-label">белки, г</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="weekAvgFat">0</div>
-                    <div class="stat-label">жиры, г</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="weekAvgCarbs">0</div>
-                    <div class="stat-label">углеводы, г</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Столбчатая диаграмма -->
-        <div class="card">
-            <h3>Калории по дням (неделя)</h3>
-            <div class="bar-chart" id="calorieBarChart"></div>
-        </div>
-
-        <!-- Средние за месяц -->
-        <div class="card">
-            <h3>Средние за месяц</h3>
-            <div class="stats-grid">
-                <div class="stat-card">
-                    <div class="stat-value" id="monthAvgCal">0</div>
-                    <div class="stat-label">ккал</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="monthAvgProtein">0</div>
-                    <div class="stat-label">белки, г</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="monthAvgFat">0</div>
-                    <div class="stat-label">жиры, г</div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-value" id="monthAvgCarbs">0</div>
-                    <div class="stat-label">углеводы, г</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Поддерживающее сообщение -->
-        <div id="weeklySummary" class="message-box info"></div>
-    </div>
-
-    <!-- ===== ЭКРАН: ПРОФИЛЬ ===== -->
-    <div id="screenProfile" class="screen">
-        <h1>👤 Профиль</h1>
-
-        <div class="card">
-            <div id="profileInfo"></div>
-        </div>
-
-        <div class="card">
-            <h3>Настройки</h3>
-            <div class="input-group">
-                <label>Ориентир по калориям</label>
-                <input type="number" id="profileCalorieGoal" min="1000" max="5000" step="10">
-            </div>
-            <div class="theme-toggle">
-                <span>🌙 Тёмная тема</span>
-                <div class="toggle-switch" id="themeToggle"></div>
-            </div>
-        </div>
-
-        <div class="card">
-            <h3>Данные</h3>
-            <button class="btn btn-secondary btn-block" id="exportDataBtn" style="margin-bottom: 8px;">
-                📥 Экспорт данных (JSON)
-            </button>
-            <button class="btn btn-danger btn-block" id="clearDataBtn">
-                🗑️ Очистить всё
-            </button>
-        </div>
-
-        <div class="footer-note">
-Приложение даёт ориентировочные данные и не заменяет консультацию врача или диетолога.
-        </div>
-    </div>
+<!-- ПРОФИЛЬ -->
+<div id="scrProf" class="screen">
+<h1>👤 Профиль</h1>
+<div class="card" id="profInfo"></div>
+<div class="card"><h3>Настройки</h3>
+<div class="input-group"><label>Ориентир по калориям</label><input type="number" id="profCal" step="10"></div>
+<div class="toggle-row"><span>🌙 Тёмная тема</span><div class="switch" id="themeSw"></div></div>
+</div>
+<div class="card"><h3>Данные</h3>
+<button class="btn btn-secondary btn-block" id="exportBtn" style="margin-bottom:8px">📥 Экспорт данных</button>
+<button class="btn btn-danger btn-block" id="clearBtn">🗑️ Очистить всё</button>
+</div>
+<div class="footer">Приложение даёт ориентировочные данные и не заменяет консультацию врача или диетолога.</div>
+</div>
 
 </div>
 
-<!-- ===== НИЖНЯЯ НАВИГАЦИЯ ===== -->
-<nav class="bottom-nav">
-    <button class="nav-item active" data-screen="screenDiary">
-        <span class="nav-icon">🍽️</span>
-        <span>Дневник</span>
-    </button>
-    <button class="nav-item" data-screen="screenMeasurements">
-        <span class="nav-icon">📏</span>
-        <span>Вес и рост</span>
-    </button>
-    <button class="nav-item" data-screen="screenStats">
-        <span class="nav-icon">📊</span>
-        <span>Статистика</span>
-    </button>
-    <button class="nav-item" data-screen="screenProfile">
-        <span class="nav-icon">👤</span>
-        <span>Профиль</span>
-    </button>
+<nav class="nav">
+<button class="nav-item active" data-scr="scrDiary"><span class="icon">🍽️</span><span>Дневник</span></button>
+<button class="nav-item" data-scr="scrMeas"><span class="icon">📏</span><span>Вес и рост</span></button>
+<button class="nav-item" data-scr="scrStats"><span class="icon">📊</span><span>Статистика</span></button>
+<button class="nav-item" data-scr="scrProf"><span class="icon">👤</span><span>Профиль</span></button>
 </nav>
-    <div class="search-container">
-        <div class="input-group">
-            <label>Поиск по базе</label>
-            <input type="text" id="productSearch" placeholder="Начни вводить название..." autocomplete="off">
-        </div>
-        <div class="search-results" id="productSearchResults"></div>
-    </div>
-
-    <div class="input-group">
-        <label>Название</label>
-        <input type="text" id="productName" placeholder="Название продукта">
-    </div>
-
-    <div class="row">
-        <div class="input-group">
-            <label>Граммы</label>
-            <input type="number" id="productGrams" placeholder="100" min="1" step="1">
-        </div>
-        <div class="input-group">
-            <label>Калории (на 100г)</label>
-            <input type="number" id="productCalories" placeholder="0" min="0" step="1">
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="input-group">
-            <label>Белки (на 100г)</label>
-            <input type="number" id="productProtein" placeholder="0" min="0" step="0.1">
-        </div>
-        <div class="input-group">
-            <label>Жиры (на 100г)</label>
-            <input type="number" id="productFat" placeholder="0" min="0" step="0.1">
-        </div>
-        <div class="input-group">
-            <label>Углеводы (на 100г)</label>
-            <input type="number" id="productCarbs" placeholder="0" min="0" step="0.1">
-        </div>
-    </div>
-
-    <label class="checkbox-label" style="margin-bottom: 12px;">
-        <input type="checkbox" id="saveToMyProducts">
-        Сохранить в «Мои продукты»
-    </label>
-
-    <button class="btn btn-primary btn-block" id="confirmAddProduct">Добавить</button>
 </div>
-    <div class="input-group">
-        <label>Дата</label>
-        <input type="date" id="measureDate">
-    </div>
 
-    <div class="row">
-        <div class="input-group">
-            <label>Вес (кг)</label>
-            <input type="number" id="measureWeight" placeholder="40" min="10" max="300" step="0.1">
-        </div>
-        <div class="input-group">
-            <label>Рост (см)</label>
-            <input type="number" id="measureHeight" placeholder="150" min="50" max="250">
-        </div>
-    </div>
-
-    <div class="input-group">
-        <label>Обхват талии (см) — по желанию</label>
-        <input type="number" id="measureWaist" placeholder="60" min="30" max="200" step="0.1">
-    </div>
-
-    <div class="input-group">
-        <label>Заметка — по желанию</label>
-        <textarea id="measureNote" rows="2" placeholder="Как ты себя чувствуешь?"></textarea>
-    </div>
-
-    <button class="btn btn-primary btn-block" id="confirmAddMeasurement">Сохранить</button>
+<!-- МОДАЛКА: ПРОДУКТ -->
+<div class="overlay" id="mAddProd">
+<div class="modal">
+<div class="modal-head"><h2>Добавить продукт</h2><button class="close" data-m="mAddProd">✕</button></div>
+<div class="search-wrap">
+<div class="input-group"><label>Поиск по базе</label><input id="prodSearch" placeholder="Начни вводить..." autocomplete="off"></div>
+<div class="search-res" id="prodRes"></div>
 </div>
-.modal-overlay {
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: rgba(0,0,0,0.4);
-        display: none;
-        justify-content: center;
-        align-items: flex-end;
-        z-index: 200;
-        animation: fadeIn 0.2s ease;
-    }
+<div class="input-group"><label>Название</label><input id="pName"></div>
+<div class="row">
+<div class="input-group"><label>Граммы</label><input type="number" id="pGram" value="100"></div>
+<div class="input-group"><label>Калории (на 100г)</label><input type="number" id="pCal" value="0"></div>
+</div>
+<div class="row">
+<div class="input-group"><label>Белки</label><input type="number" id="pProt" value="0" step="0.1"></div>
+<div class="input-group"><label>Жиры</label><input type="number" id="pFat" value="0" step="0.1"></div>
+<div class="input-group"><label>Углеводы</label><input type="number" id="pCarb" value="0" step="0.1"></div>
+</div>
+<label class="chk"><input type="checkbox" id="pSave"> Сохранить в «Мои продукты»</label>
+<button class="btn btn-primary btn-block" id="pConfirm">Добавить</button>
+</div>
+</div>
 
-    .modal-overlay.active {
-        display: flex;
-    }
+<!-- МОДАЛКА: ЗАМЕР -->
+<div class="overlay" id="mMeas">
+<div class="modal">
+<div class="modal-head"><h2 id="measTitle">Добавить замер</h2><button class="close" data-m="mMeas">✕</button></div>
+<div class="input-group"><label>Дата</label><input type="date" id="mDate"></div>
+<div class="row">
+<div class="input-group"><label>Вес (кг)</label><input type="number" id="mWeight" step="0.1"></div>
+[30.09.2026 16:35] Togrul 🥷🏻: <div class="input-group"><label>Рост (см)</label><input type="number" id="mHeight"></div>
+</div>
+<div class="input-group"><label>Обхват талии (см) — по желанию</label><input type="number" id="mWaist" step="0.1"></div>
+<div class="input-group"><label>Заметка</label><textarea id="mNote" rows="2"></textarea></div>
+<button class="btn btn-primary btn-block" id="mSave">Сохранить</button>
+</div>
+</div>
 
-    .modal {
-        background: var(--card-bg);
-        border-radius: var(--radius) var(--radius) 0 0;
-        width: 100%;
-        max-width: 600px;
-        max-height: 85vh;
-        overflow-y: auto;
-        padding: 20px;
-        animation: slideUp 0.3s ease;
-    }
+<!-- МОДАЛКА: ОЧИСТКА -->
+<div class="overlay" id="mClear">
+<div class="modal">
+<div class="modal-head"><h2>Очистить все данные?</h2><button class="close" data-m="mClear">✕</button></div>
+<p style="margin-bottom:16px;color:var(--light)">Это действие нельзя отменить.</p>
+<div class="row"><button class="btn btn-outline" data-m="mClear">Отмена</button><button class="btn btn-danger" id="clearYes">Да, очистить</button></div>
+</div>
+</div>
 
-    @keyframes slideUp {
-        from { transform: translateY(100%); }
-        to { transform: translateY(0); }
-    }
+<script>
+// ============ БАЗА ============
+const DB=[
+{name:'Гречка отварная',cal:110,p:4.2,f:1.1,c:21.3},{name:'Рис отварной',cal:116,p:2.2,f:0.5,c:25},
+{name:'Овсянка на воде',cal:88,p:3,f:1.7,c:15},{name:'Овсянка на молоке',cal:120,p:4,f:3.5,c:18},
+{name:'Перловка отварная',cal:106,p:3.1,f:0.4,c:22.2},{name:'Пшено отварное',cal:120,p:3,f:0.7,c:25},
+{name:'Кукурузная каша',cal:86,p:2,f:0.5,c:18},{name:'Булгур отварной',cal:83,p:3.1,f:0.2,c:18.6},
+{name:'Киноа отварная',cal:120,p:4.4,f:1.9,c:21.3},{name:'Манная каша на молоке',cal:98,p:3,f:3.2,c:14.5},
+{name:'Куриная грудка отварная',cal:137,p:29.8,f:1.8,c:0.5},{name:'Куриное бедро запечённое',cal:185,p:25,f:9,c:0},
+{name:'Индейка отварная',cal:104,p:19.2,f:2,c:0},{name:'Говядина отварная',cal:254,p:25.8,f:16.8,c:0},
+{name:'Свинина тушёная',cal:235,p:20,f:16,c:0},{name:'Телятина отварная',cal:130,p:22,f:4.5,c:0},
+{name:'Кролик отварной',cal:175,p:24,f:8,c:0},{name:'Куриные котлеты на пару',cal:150,p:18,f:7,c:5},
+{name:'Лосось запечённый',cal:208,p:22,f:13,c:0},{name:'Треска отварная',cal:78,p:17.5,f:0.6,c:0},
+{name:'Тунец в собственном соку',cal:96,p:22,f:1,c:0},{name:'Скумбрия запечённая',cal:191,p:18,f:13,c:0},
+{name:'Сельдь слабосолёная',cal:217,p:17,f:16,c:0},{name:'Креветки отварные',cal:95,p:20,f:1,c:0},
+{name:'Минтай отварной',cal:72,p:16,f:0.7,c:0},{name:'Горбуша запечённая',cal:140,p:21,f:6,c:0},
+{name:'Огурец',cal:15,p:0.8,f:0.1,c:2.8},{name:'Помидор',cal:20,p:1.1,f:0.2,c:3.7},
+{name:'Капуста белокочанная',cal:28,p:1.8,f:0.1,c:4.7},{name:'Морковь',cal:35,p:1.3,f:0.1,c:6.9},
+{name:'Брокколи отварная',cal:34,p:2.8,f:0.4,c:3.5},{name:'Кабачок тушёный',cal:24,p:0.6,f:0.3,c:4.5},
+{name:'Картофель отварной',cal:82,p:2,f:0.4,c:16},{name:'Свёкла отварная',cal:44,p:1.7,f:0.2,c:10},
+{name:'Перец болгарский',cal:27,p:1.3,f:0.1,c:5.3},{name:'Салат листовой',cal:15,p:1.5,f:0.2,c:1.8},
+{name:'Лук репчатый',cal:41,p:1.4,f:0.2,c:8.2},{name:'Баклажан запечённый',cal:35,p:0.8,f:0.2,c:6},
+{name:'Яблоко',cal:52,p:0.3,f:0.2,c:13.8},{name:'Банан',cal:89,p:1.1,f:0.3,c:22.8},
+{name:'Апельсин',cal:47,p:0.9,f:0.1,c:11.8},{name:'Груша',cal:57,p:0.4,f:0.3,c:15.2},
+{name:'Виноград',cal:69,p:0.7,f:0.2,c:18.1},{name:'Клубника',cal:32,p:0.7,f:0.3,c:7.7},
+{name:'Черника',cal:57,p:0.7,f:0.3,c:14.5},{name:'Малина',cal:52,p:1.2,f:0.7,c:11.9},
+{name:'Киви',cal:61,p:1.1,f:0.5,c:14.7},{name:'Мандарин',cal:53,p:0.8,f:0.3,c:13.3},
+{name:'Молоко 2.5%',cal:52,p:2.8,f:2.5,c:4.7},{name:'Кефир 1%',cal:40,p:3,f:1,c:4},
+{name:'Йогурт натуральный 2%',cal:60,p:4.3,f:2,c:6.2},{name:'Творог 5%',cal:121,p:17,f:5,c:3},
+{name:'Творог 9%',cal:159,p:16,f:9,c:3},{name:'Сыр твёрдый',cal:364,p:25,f:28,c:0},
+{name:'Сметана 15%',cal:158,p:2.6,f:15,c:3.6},{name:'Ряженка 4%',cal:67,p:2.9,f:4,c:4.2},
+{name:'Сырники',cal:220,p:12,f:10,c:22},{name:'Хлеб белый',cal:265,p:8,f:3.2,c:49},
+{name:'Хлеб чёрный',cal:214,p:6.8,f:1.3,c:41},{name:'Батон нарезной',cal:262,p:7.5,f:2.9,c:51},
+{name:'Лаваш армянский',cal:236,p:7.9,f:1,c:47.6},{name:'Круассан',cal:406,p:8.2,f:21,c:45},
+{name:'Печенье овсяное',cal:437,p:6,f:14,c:71},{name:'Шоколад молочный',cal:535,p:7.6,f:30,c:59},
+{name:'Шоколад тёмный 70%',cal:598,p:7.8,f:42,c:46},{name:'Мороженое пломбир',cal:227,p:3.7,f:15,c:20},
+{name:'Мёд',cal:304,p:0.
+[30.09.2026 16:35] Togrul 🥷🏻: 3,f:0,c:82},{name:'Варенье',cal:250,p:0.3,f:0.1,c:62},
+{name:'Зефир',cal:326,p:0.8,f:0.1,c:81},{name:'Пряник',cal:364,p:5,f:3,c:78},
+{name:'Яйцо куриное',cal:155,p:12.6,f:11,c:0.7},{name:'Яичница из 2 яиц',cal:240,p:14,f:19,c:1},
+{name:'Омлет с молоком',cal:185,p:12,f:13,c:3},{name:'Чай без сахара',cal:1,p:0,f:0,c:0.2},
+{name:'Кофе без сахара',cal:2,p:0.2,f:0,c:0.3},{name:'Сок апельсиновый',cal:45,p:0.7,f:0.2,c:10.4},
+{name:'Сок яблочный',cal:46,p:0.1,f:0.1,c:11.3},{name:'Какао на молоке',cal:85,p:3.2,f:3.5,c:10},
+{name:'Миндаль',cal:579,p:21,f:50,c:22},{name:'Грецкий орех',cal:654,p:15,f:65,c:14},
+{name:'Семечки подсолнечника',cal:584,p:21,f:52,c:10},{name:'Арахис',cal:567,p:26,f:49,c:16},
+{name:'Масло сливочное',cal:748,p:0.5,f:82.5,c:0.8},{name:'Масло растительное',cal:899,p:0,f:99.9,c:0},
+{name:'Майонез',cal:627,p:2.4,f:67,c:3.9},{name:'Сахар',cal:399,p:0,f:0,c:99.8},
+{name:'Соль',cal:0,p:0,f:0,c:0}
+];
 
-    .modal-header {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        margin-bottom: 16px;
-    }
+// ============ СОСТОЯНИЕ ============
+const KEY='diary_v2';
+let S={profile:null,meals:{},water:{},meas:[],myProd:[],recent:[],theme:'light'};
 
-    .modal-header h2 {
-        margin-bottom: 0;
-    }
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){console.warn(e)}}
+function load(){try{const d=localStorage.getItem(KEY);if(d)S={...S,...JSON.parse(d)}}catch(e){}}
 
-    .modal-close {
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        cursor: pointer;
-        color: var(--text-light);
-        padding: 4px 8px;
-        border-radius: 8px;
-    }
+// ============ УТИЛИТЫ ============
+const today=()=>new Date().toISOString().split('T')[0];
+const fmtDate=d=>new Date(d+'T00:00:00').toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'});
+const fmtShort=d=>new Date(d+'T00:00:00').toLocaleDateString('ru-RU',{day:'numeric',month:'short'});
+function age(b){const bb=new Date(b),n=new Date();let a=n.getFullYear()-bb.getFullYear();const m=n.getMonth()-bb.getMonth();if(m<0||(m===0&&n.getDate()<bb.getDate()))a--;return a}
+function isMinor(){return!S.profile||!S.profile.birth||age(S.profile.birth)<18}
+function mifflin(w,h,a,g,act){let b=g==='female'?10*w+6.25*h-5*a-161:10*w+6.25*h-5*a+5;const m={low:1.2,medium:1.55,high:1.725};return Math.round(b*(m[act]||1.55))}
+function getMeals(d){if(!S.meals[d])S.meals[d]={breakfast:[],lunch:[],dinner:[],snacks:[]};return S.meals[d]}
+function getWater(d){return S.water[d]||0}
+function setWater(n){S.water[today()]=Math.max(0,Math.min(20,n));save();renderWater()}
+function totals(d){const m=S.meals[d]||{breakfast:[],lunch:[],dinner:[],snacks:[]};const t={cal:0,p:0,f:0,c:0};Object.values(m).forEach(arr=>arr.forEach(i=>{const r=(i.gram||100)/100;t.cal+=(i.cal||0)*r;t.p+=(i.p||0)*r;t.f+=(i.f||0)*r;t.c+=(i.c||0)*r}));t.cal=Math.round(t.cal);t.p=Math.round(t.p*10)/10;t.f=Math.round(t.f*10)/10;t.c=Math.round(t.c*10)/10;return t}
+function last7(){const a=[];for(let i=6;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);a.push(d.toISOString().split('T')[0])}return a}
+function last30(){const a=[];for(let i=29;i>=0;i--){const d=new Date();d.setDate(d.getDate()-i);a.push(d.toISOString().split('T')[0])}return a}
+function streak(){let s=0;const d=new Date();while(true){const ds=d.toISOString().split('T')[0];const m=S.meals[ds];if(m&&Object.values(m).some(a=>a.length>0)){s++;d.setDate(d.getDate()-1)}else break}return s}
+function addRecent(p){const k=p.name+'|'+p.cal;S.recent=S.recent.filter(x=>(x.name+'|'+x.cal)!==k);S.recent.unshift({...p});if(S.recent.length>20)S.recent.pop();save()}
 
-    .modal-close:hover {
-        background: rgba(0,0,0,0.05);
-    }
+// ============ ТЕМА ============
+function applyTheme(){document.documentElement.dataset.theme=S.theme||'light'}
 
-    /* --- ГРАФИКИ --- */
-    .chart-container {
-        position: relative;
-        width: 100%;
-        height: 200px;
-        margin: 12px 0;
-    }
+// ============ НАВИГАЦИЯ ============
+function go(scr){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(scr).classList.add('active');document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));document.querySelector(`.nav-item[data-scr="${scr}"]`)?.classList.add('active');if(scr==='scrDiary'){renderMeals();renderRing();renderWater();renderRecent()}if(scr==='scrMeas'){renderMeas();renderBMI();renderCharts()}if(scr==='scrStats')renderStats();if(scr==='scrProf')renderProf();window.scrollTo({top:0,behavior:'smooth'})}
 
-    .chart-container canvas {
-        width: 100% !important;
-        height: 100% !important;
-    }
+// ============ РЕНДЕР ============
+function renderGreet(){const h=new Date().
+[30.09.2026 16:35] Togrul 🥷🏻: getHours();let g='Доброе утро';if(h>=12&&h<18)g='Добрый день';else if(h>=18)g='Добрый вечер';document.getElementById('greet').textContent=`${g}, ${S.profile?.name||''}! 🌸`}
 
-    .period-switcher {
-        display: flex;
-        gap: 6px;
-        margin-bottom: 12px;
-        flex-wrap: wrap;
-    }
+function renderMeals(){const m=getMeals(today());const names={breakfast:{l:'Завтрак',e:'🌅'},lunch:{l:'Обед',e:'☀️'},dinner:{l:'Ужин',e:'🌙'},snacks:{l:'Перекусы',e:'🍎'}};const c=document.getElementById('meals');c.innerHTML='';Object.entries(names).forEach(([k,info])=>{const items=m[k]||[];const cal=items.reduce((s,i)=>s+(i.cal||0)*(i.gram||100)/100,0);const card=document.createElement('div');card.className='card meal-card';card.innerHTML=`<div class="meal-head"><div class="meal-name">${info.e} ${info.l}</div><div class="meal-cal">${Math.round(cal)} ккал</div></div><div class="meal-items">${items.length===0?'<div style="font-size:.85rem;color:var(--light);padding:4px 0">Пока пусто</div>':items.map((i,idx)=>`<div class="meal-item"><div class="item-info"><div class="item-name">${i.name}</div><div class="item-det">${i.gram}г · ${Math.round((i.cal||0)*(i.gram||100)/100)} ккал · Б:${((i.p||0)*(i.gram||100)/100).toFixed(1)} Ж:${((i.f||0)*(i.gram||100)/100).toFixed(1)} У:${((i.c||0)*(i.gram||100)/100).toFixed(1)}</div></div><div class="item-act"><button onclick="editItem('${k}',${idx})">✏️</button><button onclick="delItem('${k}',${idx})">🗑️</button></div></div>`).join('')}</div><button class="btn btn-outline btn-small btn-block" onclick="openAdd('${k}')">+ Добавить продукт</button>`;c.appendChild(card)})}
 
-    .period-switcher button {
-        padding: 6px 14px;
-        border-radius: 20px;
-        border: 1px solid #e0e0e0;
-        background: var(--card-bg);
-        color: var(--text-light);
-        font-size: 0.85rem;
-        cursor: pointer;
-        transition: all 0.2s;
-        font-family: var(--font);
-    }
+function renderRing(){const t=totals(today());const g=S.profile?.calGoal||1800;const pct=Math.min(t.cal/g,1);const c=2*Math.PI*65;document.getElementById('tCal').textContent=t.cal;document.getElementById('calGoalLbl').textContent=`из ${g} ккал`;document.getElementById('ring').style.strokeDashoffset=c*(1-pct);const pg=Math.round(g*0.25/4),fg=Math.round(g*0.3/9),cg=Math.round(g*0.45/4);document.getElementById('tProt').textContent=t.p.toFixed(1)+' г';document.getElementById('tFat').textContent=t.f.toFixed(1)+' г';document.getElementById('tCarb').textContent=t.c.toFixed(1)+' г';document.getElementById('pBar').style.width=Math.min(t.p/pg*100,100)+'%';document.getElementById('fBar').style.width=Math.min(t.f/fg*100,100)+'%';document.getElementById('cBar').style.width=Math.min(t.c/cg*100,100)+'%'}
 
-    .period-switcher button.active {
-        background: var(--primary);
-        color: #fff;
-        border-color: var(--primary);
-    }
+function renderWater(){const n=getWater(today());document.getElementById('wCnt').textContent=n;document.getElementById('wLbl').textContent=n===1?'1 стакан':n+' стаканов';document.getElementById('wMinus').disabled=n<=0;const g=document.getElementById('wGlasses');g.innerHTML='';for(let i=0;i<Math.max(n,8);i++){const s=document.createElement('span');s.textContent=i<n?'💧':'🫗';if(i>=n)s.classList.add('empty');g.appendChild(s)}}
 
-    [data-theme="dark"] .period-switcher button {
-        border-color: #444;
-    }
+function renderRecent(){const r=S.recent.slice(0,10);const card=document.getElementById('recentCard');const c=document.getElementById('recent');if(r.length===0){card.classList.add('hidden');return}card.classList.remove('hidden');c.innerHTML=r.map(p=>`<button class="btn btn-secondary btn-small" style="margin:2px" onclick="quickAdd('${p.name.replace(/'/g,"\\'")}',${p.cal},${p.p},${p.f},${p.c})">${p.name}</button>`).join('')}
 
-    /* --- СПИСОК ЗАМЕРОВ --- */
-    .measurement-list {
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-    }
+function renderMeas(){const l=document.getElementById('measList');const s=[...S.meas].sort((a,b)=>b.date.localeCompare(a.date));if(s.length===0){l.innerHTML='<div class="empty"><div class="em">📏</div><p>Пока нет замеров</p></div>';return}l.innerHTML=s.map(m=>`<div class="meas"><div class="info"><div class="date">${fmtDate(m.date)}</div><div class="vals">${m.weight?`<span class="val">⚖️ ${m.weight} кг</span>`:''}${m.height?`<span class="val">📏 ${m.height} см</span>`:''}${m.waist?`<span class="val">📐 ${m.waist} см</span>`:''}</div>${m.note?`<div style="font-size:.8rem;color:var(--light);margin-top:2px">${m.note}</div>`:''}</div><div class="act"><button onclick="editMeas('${m.id}')">✏️</button><button onclick="delMeas('${m.id}')">🗑️</button></div></div>`).join('')}
 
-    .measurement-item {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 12px;
-        background: var(--bg);
-        border-radius: var(--radius-sm);
-        font-size: 0.9rem;
-        animation: slideIn 0.2s ease;
-    }
+function renderBMI(){const card=document.getElementById('bmiCard');if(isMinor()||!S.profile){card.classList.add('hidden');return}const s=[...S.meas].
+[30.09.2026 16:35] Togrul 🥷🏻: sort((a,b)=>b.date.localeCompare(a.date));const l=s[0];if(!l||!l.weight||!l.height){card.classList.add('hidden');return}card.classList.remove('hidden');const bmi=l.weight/Math.pow(l.height/100,2);document.getElementById('bmiVal').textContent=bmi.toFixed(1);let cat='';if(bmi<18.5)cat='Ниже нормы';else if(bmi<25)cat='Норма';else if(bmi<30)cat='Выше нормы';else cat='Значительно выше нормы';document.getElementById('bmiCat').textContent=cat}
 
-    .measurement-item .info {
-        display: flex;
-        flex-direction: column;
-        flex: 1;
-        min-width: 0;
-    }
+function renderStats(){document.getElementById('streak').textContent=streak();const wk=last7().map(d=>totals(d));const wd=wk.filter(t=>t.cal>0);const wn=wd.length;const wa=wn>0?{cal:Math.round(wd.reduce((s,t)=>s+t.cal,0)/wn),p:Math.round(wd.reduce((s,t)=>s+t.p,0)/wn),f:Math.round(wd.reduce((s,t)=>s+t.f,0)/wn),c:Math.round(wd.reduce((s,t)=>s+t.c,0)/wn)}:{cal:0,p:0,f:0,c:0};document.getElementById('wCal').textContent=wa.cal;document.getElementById('wProt').textContent=wa.p;document.getElementById('wFat').textContent=wa.f;document.getElementById('wCarb').textContent=wa.c;const mo=last30().map(d=>totals(d));const md=mo.filter(t=>t.cal>0);const mn=md.length;const ma=mn>0?{cal:Math.round(md.reduce((s,t)=>s+t.cal,0)/mn),p:Math.round(md.reduce((s,t)=>s+t.p,0)/mn),f:Math.round(md.reduce((s,t)=>s+t.f,0)/mn),c:Math.round(md.reduce((s,t)=>s+t.c,0)/mn)}:{cal:0,p:0,f:0,c:0};document.getElementById('mCal').textContent=ma.cal;document.getElementById('mProt').textContent=ma.p;document.getElementById('mFat').textContent=ma.f;document.getElementById('mCarb').textContent=ma.c;const bc=document.getElementById('barsChart');const maxC=Math.max(...wk.map(t=>t.cal),1);bc.innerHTML=last7().map((d,i)=>{const t=wk[i];const h=t.cal>0?Math.max(t.cal/maxC*100,4):4;const dn=new Date(d+'T00:00:00').toLocaleDateString('ru-RU',{weekday:'short'});return <div class="bar-w"><div class="bar-val">${t.cal>0?t.cal:''}</div><div class="bar" style="height:${h}px"></div><div class="bar-lbl">${dn}</div></div>`}).join('');const msg=document.getElementById('weeklyMsg');if(wn===0)msg.textContent='Начни вести дневник — и здесь появится твоя статистика! 🌱';else if(wn<=2)msg.textContent=`Ты вела дневник ${wn} ${wn===1?'день':'дня'} из 7. Каждый шаг важен! 💛;else if(wn<=4)msg.textContent=`Ты вела дневник ${wn} дня из 7. Хороший ритм! 🌸`;else msg.textContent=`Ты вела дневник ${wn} дней из 7 — отлично! 🌟`}
 
-    .measurement-item .date {
-        font-size: 0.8rem;
-        color: var(--text-light);
-    }
+function renderProf(){if(!S.profile)return;const p=S.profile;const a=p.birth?age(p.birth):'—';const g=p.gender==='female'?'Девочка':'Мальчик';const al={low:'Низкий',medium:'Средний',high:'Высокий'};document.getElementById('profInfo').innerHTML=`<div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><div style="font-size:3rem">🌸</div><div><h2 style="margin-bottom:2px">${p.name}</h2><div style="font-size:.9rem;color:var(--light)">${g}, ${a} лет</div></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;font-size:.9rem"><div>📏 ${p.height||'—'} см</div><div>⚖️ ${p.weight||'—'} кг</div><div>🏃 ${al[p.activity]||'—'}</div><div>🎂 ${p.birth?fmtDate(p.birth):'—'}</div></div>`;document.getElementById('profCal').value=p.calGoal||1800}
 
-    .measurement-item .values {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-    }
+// ============ ГРАФИКИ ============
+function drawChart(canvasId,field,unit,periodId){const cv=document.getElementById(canvasId);if(!cv)return;const ctx=cv.getContext('2d');const r=cv.parentElement.getBoundingClientRect();cv.width=r.width*2;cv.height=r.height*2;cv.style.width=r.width+'px';cv.style.height=r.height+'px';ctx.scale(2,2);const w=r.width,h=r.height;const pad={t:20,r:20,b:30,l:45};const s=[...S.meas].filter(m=>m[field]).sort((a,b)=>a.date.localeCompare(b.date));if(s.length<1){ctx.clearRect(0,0,w,h);ctx.fillStyle='#aaa';ctx.font='14px sans-serif';ctx.textAlign='center';ctx.fillText('Нет данных',w/2,h/2);return}const ps=document.getElementById(periodId);const per=ps?.querySelector('.active')?.dataset?.p||'all';let f=s;const now=new Date();if(per==='week'){const c=new Date(now);c.setDate(c.getDate()-7);f=s.filter(m=>new Date(m.date)>=c)}else if(per==='month'){const c=new Date(now);c.setMonth(c.getMonth()-1);f=s.filter(m=>new Date(m.
+[30.09.2026 16:35] Togrul 🥷🏻: date)>=c)}else if(per==='3months'){const c=new Date(now);c.setMonth(c.getMonth()-3);f=s.filter(m=>new Date(m.date)>=c)}if(f.length===0)f=s.slice(-10);const vals=f.map(m=>m[field]);const min=Math.min(...vals)*0.98;const max=Math.max(...vals)*1.02;const range=max-min||1;const cw=w-pad.l-pad.r,ch=h-pad.t-pad.b;ctx.clearRect(0,0,w,h);ctx.strokeStyle=document.documentElement.dataset.theme==='dark'?'#444':'#eee';ctx.lineWidth=1;for(let i=0;i<=4;i++){const y=pad.t+ch/4*i;ctx.beginPath();ctx.moveTo(pad.l,y);ctx.lineTo(w-pad.r,y);ctx.stroke();ctx.fillStyle=document.documentElement.dataset.theme==='dark'?'#aaa':'#999';ctx.font='11px sans-serif';ctx.textAlign='right';ctx.fillText((max-range/4*i).toFixed(1),pad.l-6,y+4)}const pts=f.map((m,i)=>{const x=pad.l+(f.length===1?cw/2:cw/(f.length-1)*i);const y=pad.t+ch-((m[field]-min)/range)*ch;return{x,y}});ctx.beginPath();ctx.strokeStyle='#a8d8ea';ctx.lineWidth=2.5;ctx.lineJoin='round';pts.forEach((p,i)=>{if(i===0)ctx.moveTo(p.x,p.y);else ctx.lineTo(p.x,p.y)});ctx.stroke();if(pts.length>1){ctx.beginPath();ctx.moveTo(pts[0].x,pad.t+ch);pts.forEach(p=>ctx.lineTo(p.x,p.y));ctx.lineTo(pts[pts.length-1].x,pad.t+ch);ctx.closePath();const gr=ctx.createLinearGradient(0,pad.t,0,pad.t+ch);gr.addColorStop(0,'rgba(168,216,234,0.3)');gr.addColorStop(1,'rgba(168,216,234,0.02)');ctx.fillStyle=gr;ctx.fill()}pts.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,4,0,Math.PI*2);ctx.fillStyle='#fff';ctx.fill();ctx.strokeStyle='#a8d8ea';ctx.lineWidth=2;ctx.stroke()});ctx.fillStyle=document.documentElement.dataset.theme==='dark'?'#aaa':'#999';ctx.font='10px sans-serif';ctx.textAlign='center';const st=Math.max(1,Math.floor(f.length/5));pts.forEach((p,i)=>{if(i%st===0||i===pts.length-1){ctx.fillText(fmtShort(f[i].date),p.x,h-5)}})}
+function renderCharts(){drawChart('wChart','weight','кг','wPeriods');drawChart('hChart','height','см','hPeriods')}
 
-    .measurement-item .value {
-        font-weight: 500;
-    }
+// ============ ДЕЙСТВИЯ ============
+let curMeal='breakfast', editIdx=-1;
 
-    .measurement-item .actions {
-        display: flex;
-        gap: 4px;
-    }
+window.openAdd=function(mt){curMeal=mt;editIdx=-1;document.getElementById('prodSearch').value='';document.getElementById('pName').value='';document.getElementById('pGram').value='100';document.getElementById('pCal').value='';document.getElementById('pProt').value='';document.getElementById('pFat').value='';document.getElementById('pCarb').value='';document.getElementById('pSave').checked=false;document.getElementById('prodRes').classList.remove('active');document.getElementById('mAddProd').classList.add('active')};
 
-    .measurement-item .actions button {
-        background: none;
-        border: none;
-        cursor: pointer;
-        font-size: 0.9rem;
-        padding: 4px 6px;
-        border-radius: 6px;
-        transition: background 0.2s;
-    }
+window.editItem=function(mt,idx){const m=getMeals(today());const i=m[mt][idx];if(!i)return;curMeal=mt;editIdx=idx;document.getElementById('pName').value=i.name;document.getElementById('pGram').value=i.gram||100;document.getElementById('pCal').value=i.cal||0;document.getElementById('pProt').value=i.p||0;document.getElementById('pFat').value=i.f||0;document.getElementById('pCarb').value=i.c||0;document.getElementById('mAddProd').classList.add('active')};
 
-    .measurement-item .actions button:hover {
-        background: rgba(0,0,0,0.05);
-    }
+window.delItem=function(mt,idx){getMeals(today())[mt].splice(idx,1);save();renderMeals();renderRing()};
 
-    /* --- СТАТИСТИКА --- */
-    .stat-card {
-        text-align: center;
-        padding: 16px;
-    }
+window.quickAdd=function(name,cal,p,f,c){getMeals(today())[curMeal].push({name,gram:100,cal,p,f,c});addRecent({name,cal,p,f,c});save();renderMeals();renderRing();renderRecent()};
 
-    .stat-card .stat-value {
-        font-size: 2rem;
-        font-weight: 700;
-        color: var(--primary-dark);
-    }
+window.selectProd=function(name,cal,p,f,c){document.getElementById('pName').value=name;document.getElementById('pCal').value=cal;document.getElementById('pProt').value=p;document.getElementById('pFat').value=f;document.getElementById('pCarb').value=c;document.getElementById('prodRes').classList.remove('active')};
 
-    .stat-card .stat-label {
-        font-size: 0.85rem;
-        color: var(--text-light);
-    }
+window.editMeas=function(id){const m=S.meas.find(x=>x.id===id);if(!m)return;document.getElementById('measTitle').textContent='Редактировать замер';document.getElementById('mDate').value=m.date;document.getElementById('mWeight').value=m.weight||'';document.getElementById('mHeight').value=m.height||'';document.getElementById('mWaist').value=m.waist||'';document.getElementById('mNote').value=m.note||'';document.getElementById('mSave').dataset.edit=id;document.getElementById('mMeas').classList.add('active')};
 
-    .stats-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-    }
+window.
+[30.09.2026 16:35] Togrul 🥷🏻: delMeas=function(id){if(!confirm('Удалить замер?'))return;S.meas=S.meas.filter(m=>m.id!==id);save();renderMeas();renderBMI();renderCharts()};
 
-    .bar-chart {
-        display: flex;
-        align-items: flex-end;
-        gap: 4px;
-        height: 120px;
-        padding: 8px 0;
-        overflow-x: auto;
-    }
+// ============ УМНЫЙ ВВОД ============
+function parseSmart(text){const res=[];const all=[...DB,...S.myProd];all.forEach(p=>{const nl=p.name.toLowerCase();const nw=nl.split(' ');const mt=nw.filter(w=>w.length>2&&text.toLowerCase().includes(w));if(mt.length>0){let gram=100;const re=new RegExp(`(\\d+)\\s*(г|гр|грамм|шт|штук)?\\s*${nw[0]}`,'i');const m=text.match(re);if(m){gram=parseInt(m[1]);if(m[2]==='шт'||m[2]==='штук'){if(nl.includes('яйцо'))gram*=60;else if(nl.includes('яблоко'))gram*=180;else if(nl.includes('банан'))gram*=120;else gram*=100}}res.push({...p,gram})}});if(res.length===0){text.toLowerCase().split(/[\s,]+/).forEach(w=>{if(w.length<3)return;all.forEach(p=>{if(p.name.toLowerCase().includes(w)&&!res.find(r=>r.name===p.name))res.push({...p,gram:100})})})}return res.slice(0,5)}
 
-    .bar-chart .bar-wrapper {
-        display: flex;
-        flex-direction: column;
-<div class="macro-bar">
-                    <div class="macro-label">🥩 Белки</div>
-                    <div class="macro-value" id="totalProtein">0 г</div>
-                    <div class="macro-bar-bg"><div class="macro-bar-fill protein" id="proteinBar" style="width:0%"></div></div>
-                </div>
-                <div class="macro-bar">
-                    <div class="macro-label">🧈 Жиры</div>
-                    <div class="macro-value" id="totalFat">0 г</div>
-                    <div class="macro-bar-bg"><div class="macro-bar-fill fat" id="fatBar" style="width:0%"></div></div>
-                </div>
-                <div class="macro-bar">
-                    <div class="macro-label">🍞 Углеводы</div>
-                    <div class="macro-value" id="totalCarbs">0 г</div>
-                    <div class="macro-bar-bg"><div class="macro-bar-fill carbs" id="carbsBar" style="width:0%"></div></div>
-                </div>
-            </div>
-        </div>
+window.confirmSmart=function(i){const r=window._sr[i];if(!r)return;getMeals(today())[curMeal].push({name:r.name,gram:r.gram,cal:r.cal,p:r.p,f:r.f,c:r.c});addRecent(r);save();renderMeals();renderRing();renderRecent();document.getElementById('smartRes').innerHTML='<div class="msg ok">Добавлено! ✓</div>';document.getElementById('smartIn').value=''};
 
-        <!-- Вода -->
-        <div class="card">
-            <div class="meal-header">
-                <div class="meal-name">💧 Вода</div>
-                <div class="meal-cal" id="waterLabel">0 стаканов</div>
-            </div>
-            <div class="water-tracker">
-                <button id="waterMinus" aria-label="Убрать стакан">−</button>
-                <div class="water-count" id="waterCount">0</div>
-                <button id="waterPlus" aria-label="Добавить стакан">+</button>
-            </div>
-            <div class="water-glasses" id="waterGlasses"></div>
-        </div>
+// ============ ЭКСПОРТ / ОЧИСТКА ============
+function exportData(){try{const b=new Blob([JSON.stringify(S,null,2)],{type:'application/json'});const u=URL.createObjectURL(b);const a=document.createElement('a');a.href=u;a.download=`food-diary-${today()}.json`;a.click();URL.revokeObjectURL(u)}catch(e){alert('Ошибка: '+e.message)}}
 
-        <!-- Приёмы пищи -->
-        <div id="mealsContainer"></div>
+// ============ ИНИЦИАЛИЗАЦИЯ ============
+function initApp(){renderGreet();renderMeals();renderRing();renderWater();renderRecent();renderMeas();renderBMI();renderStats();renderProf();renderCharts();applyTheme()}
 
-        <!-- Умный ввод -->
-        <div class="card">
-            <h3>✨ Умный ввод</h3>
-            <p style="font-size: 0.85rem; color: var(--text-light); margin-bottom: 8px;">
-                Напиши, что ты съела, например: «2 яйца и тост с маслом»
-            </p>
-            <div class="row">
-                <input type="text" id="smartInput" placeholder="Опиши приём пищи..." style="flex:3;">
-                <button class="btn btn-primary btn-small" id="smartInputBtn" style="flex:1;">Разобрать</button>
-            </div>
-            <div id="smartInputResults" class="smart-input-results"></div>
-        </div>
+document.addEventListener('DOMContentLoaded',()=>{
+load();
+// Онбординг
+const steps=document.querySelectorAll('.step'),dots=document.querySelectorAll('.dot');
+function showStep(n){steps.forEach(s=>s.classList.remove('active'));dots.forEach(d=>d.classList.remove('active'));document.querySelector(`.step[data-s="${n}"]`)?.classList.add('active');document.querySelector(`.dot[data-s="${n}"]`)?.classList.add('active')}
+document.getElementById('s1Next').onclick=()=>{if(!document.getElementById('oName').value.trim())return alert('Введи имя');if(!document.getElementById('oBirth').value)return alert('Укажи дату рождения');showStep(2)};
+document.getElementById('s2Back').onclick=()=>showStep(1);
+document.getElementById('s2Next').onclick=()=>{const h=parseFloat(document.getElementById('oHeight').value),w=parseFloat(document.getElementById('oWeight').value);if(!h||h<50||h>250)return alert('Проверь рост');if(!w||w<10||w>300)return alert('Проверь вес');const n=document.getElementById('oName').value.trim(),b=document.getElementById('oBirth').value,g=document.getElementById('oGender').value,a=document.getElementById('oActivity').value;const ag=age(b);const rec=mifflin(w,h,ag,g,a);document.getElementById('oCal').value=rec;let html=`<div class="msg info"><strong>Примерная норма:</strong> ${rec} ккал/день<br><span style="font-size:.85rem">Это ориентир, а не жёсткая цель.</span></div>`;if(ag<18){html+=`<div class="msg warn">Тебе ${ag} лет. В этом возрасте не стоит ставить цели по снижению веса. Если есть вопросы о весе и питании — поговори с родителями или врачом. 💛</div>`}document.getElementById('calRec').innerHTML=html;showStep(3)};
+document.getElementById('finish').onclick=()=>{const n=document.getElementById('oName').value.trim(),b=document.getElementById('oBirth').value,g=document.getElementById('oGender').value,h=parseFloat(document.getElementById('oHeight').value),w=parseFloat(document.getElementById('oWeight').value),a=document.getElementById('oActivity').value;const ag=age(b);let cg=parseFloat(document.getElementById('oCal').value)||1800;if(ag>=18&&cg<1200){alert('Минимальная безопасная норма — 1200 ккал');cg=1200}S.profile={name:n,birth:b,gender:g,height:h,weight:w,activity:a,calGoal:cg};S.meas.push({id:Date.now().
+[30.09.2026 16:35] Togrul 🥷🏻: toString(36),date:today(),weight:w,height:h,waist:null,note:'Начальный замер'});save();document.getElementById('onb').classList.add('hidden');document.getElementById('app').classList.remove('hidden');initApp()};
 
-        <!-- Недавние продукты -->
-        <div id="recentProductsCard" class="card hidden">
-            <h3>🔄 Недавние</h3>
-            <div id="recentProducts"></div>
-        </div>
-    </div>
+// Старт
+if(S.profile&&S.profile.name){document.getElementById('onb').classList.add('hidden');document.getElementById('app').classList.remove('hidden');initApp()}
 
-    <!-- ===== ЭКРАН: ВЕС И РОСТ ===== -->
-    <div id="screenMeasurements" class="screen">
-        <h1>📏 Вес и рост</h1>
+// Навигация
+document.querySelectorAll('.nav-item').forEach(b=>b.onclick=()=>go(b.dataset.scr));
 
-        <!-- Кнопка добавления -->
-        <button class="btn btn-primary btn-block" id="addMeasurementBtn" style="margin-bottom: 16px;">
-            + Добавить замер
-        </button>
+// Модалки
+document.querySelectorAll('.close,[data-m]').forEach(el=>el.onclick=()=>{const id=el.dataset.m;if(id)document.getElementById(id).classList.remove('active')});
+document.querySelectorAll('.overlay').forEach(o=>o.onclick=e=>{if(e.target===o)o.classList.remove('active')});
 
-        <!-- Графики -->
-        <div class="card">
-            <h3>Динамика веса</h3>
-            <div class="period-switcher" id="weightPeriodSwitcher">
-                <button data-period="week" class="active">Неделя</button>
-                <button data-period="month">Месяц</button>
-                <button data-period="3months">3 месяца</button>
-                <button data-period="all">Всё время</button>
-            </div>
-            <div class="chart-container">
-                <canvas id="weightChart"></canvas>
-            </div>
-        </div>
+// Поиск продуктов
+document.getElementById('prodSearch').oninput=e=>{const q=e.target.value.trim().toLowerCase();const c=document.getElementById('prodRes');if(!q){c.classList.remove('active');return}const all=[...DB,...S.myProd];const f=all.filter(p=>p.name.toLowerCase().includes(q)).slice(0,10);if(f.length===0){c.classList.remove('active');return}c.innerHTML=f.map(p=>`<div class="search-item" onclick="selectProd('${p.name.replace(/'/g,"\\'")}',${p.cal},${p.p},${p.f},${p.c})"><div class="n">${p.name}</div><div class="c">${p.cal} ккал/100г · Б:${p.p} Ж:${p.f} У:${p.c}</div></div>`).join('');c.classList.add('active')};
 
-        <div class="card">
-            <h3>Динамика роста</h3>
-            <div class="period-switcher" id="heightPeriodSwitcher">
-                <button data-period="week" class="active">Неделя</button>
-                <button data-period="month">Месяц</button>
-                <button data-period="3months">3 месяца</button>
-                <button data-period="all">Всё время</button>
-            </div>
-            <div class="chart-container">
-                <canvas id="heightChart"></canvas>
-            </div>
-        </div>
+// Подтверждение продукта
+document.getElementById('pConfirm').onclick=()=>{const n=document.getElementById('pName').value.trim();const g=parseFloat(document.getElementById('pGram').value)||100;const c=parseFloat(document.getElementById('pCal').value)||0;const p=parseFloat(document.getElementById('pProt').value)||0;const f=parseFloat(document.getElementById('pFat').value)||0;const cb=parseFloat(document.getElementById('pCarb').value)||0;if(!n)return alert('Введи название');const m=getMeals(today());if(editIdx>=0)m[curMeal][editIdx]={name:n,gram:g,cal:c,p,f,c:cb};else m[curMeal].push({name:n,gram:g,cal:c,p,f,c:cb});addRecent({name:n,cal:c,p,f,c:cb});if(document.getElementById('pSave').checked&&editIdx<0&&!S.myProd.find(x=>x.name===n))S.myProd.push({name:n,cal:c,p,f,c:cb});save();document.getElementById('mAddProd').classList.remove('active');renderMeals();renderRing();renderRecent()};
 
-        <!-- ИМТ -->
-        <div id="bmiCard" class="card hidden">
-            <h3>ИМТ (Индекс массы тела)</h3>
-            <div style="text-align: center; padding: 12px;">
+// Умный ввод
+document.getElementById('smartBtn').onclick=()=>{const t=document.getElementById('smartIn').value.trim();if(!t)return;const r=parseSmart(t);const c=document.getElementById('smartRes');if(r.length===0){c.innerHTML='<div class="msg warn">Не удалось найти продукты. Попробуй ввести вручную.</div>';return}c.innerHTML=r.map((x,i)=>`<div class="smart-item"><div><div class="n">${x.name}</div><div class="d">${x.gram}г · ${Math.round((x.cal||0)*x.gram/100)} ккал · Б:${((x.p||0)*x.gram/100).toFixed(1)} Ж:${((x.f||0)*x.gram/100).toFixed(1)} У:${((x.c||0)*x.gram/100).toFixed(1)}</div></div><button onclick="confirmSmart(${i})">Добавить</button></div>`).join('');window._sr=r};
+document.getElementById('smartIn').onkeydown=e=>{if(e.key==='Enter'){e.preventDefault();document.getElementById('smartBtn').click()}};
+
+// Вода
+document.getElementById('wPlus').onclick=()=>setWater(getWater(today())+1);
+document.getElementById('wMinus').onclick=()=>setWater(getWater(today())-1);
+
+// Замер
+document.getElementById('addMeas').onclick=()=>{document.getElementById('measTitle').textContent='Добавить замер';document.getElementById('mDate').value=today();document.getElementById('mWeight').value=S.profile?.weight||'';document.getElementById('mHeight').value=S.profile?.height||'';document.getElementById('mWaist').value='';document.getElementById('mNote').value='';document.getElementById('mSave').dataset.edit='';document.getElementById('mMeas').classList.add('active')};
+document.getElementById('mSave').onclick=()=>{const e=document.getElementById('mSave').dataset.edit;const d=document.getElementById('mDate').value;const w=parseFloat(document.getElementById('mWeight').value)||null;const h=parseFloat(document.getElementById('mHeight').value)||null;const wa=parseFloat(document.getElementById('mWaist').
+[30.09.2026 16:35] Togrul 🥷🏻: value)||null;const n=document.getElementById('mNote').value.trim();if(!d)return alert('Выбери дату');if(e){const i=S.meas.findIndex(m=>m.id===e);if(i!==-1)S.meas[i]={...S.meas[i],date:d,weight:w,height:h,waist:wa,note:n}}else S.meas.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2),date:d,weight:w,height:h,waist:wa,note:n});if(w&&S.profile)S.profile.weight=w;if(h&&S.profile)S.profile.height=h;save();document.getElementById('mMeas').classList.remove('active');renderMeas();renderBMI();renderCharts();renderProf()};
+
+// Периоды графиков
+['wPeriods','hPeriods'].forEach(id=>{document.getElementById(id)?.addEventListener('click',e=>{if(e.target.tagName==='BUTTON'){document.querySelectorAll(`#${id} button`).forEach(b=>b.classList.remove('active'));e.target.classList.add('active');renderCharts()}})});
+
+// Профиль: калории
+document.getElementById('profCal').onchange=e=>{let v=parseFloat(e.target.value)||1800;const a=S.profile?.birth?age(S.profile.birth):25;const min=a>=18?1200:1000;if(v<min){alert(`Минимальная безопасная норма — ${min} ккал`);v=min;e.target.value=v}if(S.profile){S.profile.calGoal=v;save();renderRing()}};
+
+// Тема
+document.getElementById('themeSw').onclick=()=>{S.theme=S.theme==='dark'?'light':'dark';save();applyTheme();renderCharts()};
+
+// Экспорт / очистка
+document.getElementById('exportBtn').onclick=exportData;
+document.getElementById('clearBtn').onclick=()=>document.getElementById('mClear').classList.add('active');
+document.getElementById('clearYes').onclick=()=>{try{localStorage.removeItem(KEY);location.reload()}catch(e){alert('Ошибка: '+e.message)}};
+
+// Обновление графиков при ресайзе
+window.addEventListener('resize',()=>{if(!document.getElementById('app').classList.contains('hidden'))renderCharts()});
+
+// Предупреждение о низком потреблении
+setInterval(()=>{if(!S.profile||isMinor())return;const wk=last7();const low=wk.filter(d=>{const t=totals(d);return t.cal>0&&t.cal<1200}).length;if(low>=3){const lw=sessionStorage.getItem('lowWarn');if(lw!==today()){sessionStorage.setItem('lowWarn',today());setTimeout(()=>{alert('💛 Замечаю, что ты несколько дней записываешь довольно низкое потребление калорий.\n\nПожалуйста, обсуди своё питание с врачом или близким взрослым. Твоё здоровье важно!')},2000)}}},60000);
+});
+</script>
+</body>
+</html>
